@@ -255,3 +255,75 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Responsive styles for phone */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+        padding: 10px 20px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    section {
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .galeria-imagenes {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .galeria-imagenes img {
+        height: auto;
+        max-height: 250px;
+    }
+
+    blockquote {
+        font-size: 1rem;
+        padding: 15px 20px;
+    }
+
+    form {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form textarea {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    form button {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.8rem;
+        padding: 15px 10px;
+    }
+}
