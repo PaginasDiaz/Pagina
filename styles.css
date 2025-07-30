@@ -266,6 +266,58 @@ footer a:hover {
         font-size: 2rem;
     }
 
+    #logo {
+        font-size: 3rem;
+        animation: logoAnimPhone 2s ease forwards;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes logoAnimPhone {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+}
+
+@media (max-width: 400px) {
+    #logo {
+        font-size: 2.5rem;
+        animation: logoAnimPhoneSmall 2s ease forwards;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes logoAnimPhoneSmall {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(0.6);
+    }
+}
+
+    #logo {
+        font-size: 3.5rem;
+        color: var(--color-secundario);
+        animation: logoAnim 2s ease forwards;
+        animation-fill-mode: forwards;
+    }
+
     nav ul {
         flex-direction: column;
         gap: 15px;
@@ -325,6 +377,25 @@ footer a:hover {
     footer {
         font-size: 0.8rem;
         padding: 15px 10px;
+    }
+
+    #logo {
+        font-size: 3.5rem;
+    }
+
+    @keyframes logoAnim {
+        0% {
+            opacity: 0;
+            transform: scale(0.4);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(0.9);
+        }
     }
 }
 
