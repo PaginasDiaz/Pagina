@@ -1,4 +1,4 @@
-/* Paleta de colores profesional y neutra */
+, /* Paleta de colores profesional y neutra */
 :root {
     --color-fondo: #f9f9f9;
     --color-primario: #2c3e50;
@@ -325,5 +325,42 @@ footer a:hover {
     footer {
         font-size: 0.8rem;
         padding: 15px 10px;
+    }
+}
+
+/* Additional responsive styles for smaller phones */
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .galeria-imagenes img {
+        max-height: 180px;
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form textarea {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    form button {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+
+    footer {
+        font-size: 0.7rem;
+        padding: 10px 5px;
     }
 }
