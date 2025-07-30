@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portafolio de Pinturas y Retratos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="splash-screen" role="alert" aria-live="assertive">
+        <div id="logo" aria-label="Logo de la página">🎨 Mi Logo</div>
+    </div>
+    <div id="main-content" style="display:none;">
+        <header>
+            <h1>Portafolio de Pinturas y Retratos</h1>
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="#" data-section="galeria" role="button" aria-controls="galeria" aria-selected="true">Galería</a></li>
+                    <li><a href="#" data-section="biografia" role="button" aria-controls="biografia" aria-selected="false">Biografía</a></li>
+                    <li><a href="#" data-section="testimonios" role="button" aria-controls="testimonios" aria-selected="false">Testimonios</a></li>
+                    <li><a href="#" data-section="contacto" role="button" aria-controls="contacto" aria-selected="false">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="galeria" class="seccion-activa">
+            <h2>Galería de Pinturas</h2>
+            <div class="galeria-imagenes">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Pintura 1" />
+                <img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=400&q=80" alt="Pintura 2" />
+                <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?auto=format&fit=crop&w=400&q=80" alt="Pintura 3" />
+            </div>
+        </section>
+
+    <section id="biografia" class="seccion-oculta">
+        <h2>Biografía</h2>
+        <p>Artista apasionado por la pintura y el retrato, con años de experiencia y dedicación.</p>
+    </section>
+
+    <section id="testimonios" class="seccion-oculta">
+        <h2>Testimonios</h2>
+        <blockquote>
+            "Una artista increíble, sus pinturas transmiten emociones profundas." - Cliente Satisfecho
+        </blockquote>
+        <blockquote>
+            "Retratos llenos de vida y detalle, muy recomendada." - Colega Artista
+        </blockquote>
+    </section>
+
+    <section id="contacto" class="seccion-oculta">
+        <h2>Contacto</h2>
+        <form id="form-contacto">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required />
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required />
+
+            <label for="nota">Nota para el trabajo:</label>
+            <textarea id="nota" name="nota" required></textarea>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <label for="imagen">Adjuntar imagen (opcional):</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" />
+
+            <button type="submit">Enviar a WhatsApp</button>
+        </form>
+    </section>
+
+    <canvas id="canvas-efectos" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>© 2025 Portafolio de Pinturas y Retratos. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="https://wa.me/32891585" target="_blank" rel="noopener noreferrer">KennelDiaz 32891585</a></p>
+    </footer>
+</body>
+</html>
