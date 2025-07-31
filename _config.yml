@@ -1,4 +1,5 @@
 # Configuración para evitar que Jekyll procese archivos SCSS y solo sirva archivos estáticos
 source: docs
+baseurl: "/Pagina"
 exclude:
   - assets/css/style.scss
