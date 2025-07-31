@@ -1,132 +1,6 @@
-// Canvas para efectos visuales suaves y llamativos
-const canvas = document.getElementById('canvas-efectos');
-const ctx = canvas.getContext('2d');
-let width, height;
-let particles = [];
+// Funcionalidad para tienda de repuestos
 
-function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-}
-
-window.addEventListener('resize', resize);
-resize();
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.alpha = Math.random() * 0.5 + 0.3;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > width) this.speedX *= -1;
-        if (this.y < 0 || this.y > height) this.speedY *= -1;
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 111, 97, ${this.alpha})`;
-        ctx.fill();
-    }
-}
-
-function initParticles() {
-    particles = [];
-    for (let i = 0; i < 100; i++) {
-        particles.push(new Particle());
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
-    });
-    requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
-
-// Funcionalidad de zoom en imágenes al pasar el mouse
-const galeria = document.querySelector('.galeria-imagenes');
-galeria.addEventListener('mouseover', e => {
-    if (e.target.tagName === 'IMG') {
-        e.target.style.transform = 'scale(1.2)';
-        e.target.style.zIndex = '10';
-        e.target.style.transition = 'transform 0.3s ease';
-    }
-});
-galeria.addEventListener('mouseout', e => {
-    if (e.target.tagName === 'IMG') {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.zIndex = '1';
-    }
-});
-
-// Funcionalidad de carrusel automático
-let scrollAmount = 0;
-const scrollStep = 1;
-const maxScroll = galeria.scrollWidth - galeria.clientWidth;
-
-function autoScroll() {
-    scrollAmount += scrollStep;
-    if (scrollAmount >= maxScroll) {
-        scrollAmount = 0;
-    }
-    galeria.scrollTo({
-        left: scrollAmount,
-        behavior: 'smooth'
-    });
-    requestAnimationFrame(autoScroll);
-}
-
-autoScroll();
-
-// Manejo del formulario y envío a WhatsApp
-const form = document.getElementById('form-contacto');
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    const nombre = form.nombre.value.trim();
-    const direccion = form.direccion ? form.direccion.value.trim() : '';
-    const nota = form.nota ? form.nota.value.trim() : '';
-    const mensaje = form.mensaje.value.trim();
-    const imagenInput = form.imagen;
-    let imagenDataUrl = '';
-
-    if (imagenInput.files.length > 0) {
-        const file = imagenInput.files[0];
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            imagenDataUrl = event.target.result;
-            enviarWhatsApp(nombre, direccion, nota, mensaje, imagenDataUrl);
-        };
-        reader.readAsDataURL(file);
-    } else {
-        enviarWhatsApp(nombre, direccion, nota, mensaje, imagenDataUrl);
-    }
-});
-
-function enviarWhatsApp(nombre, direccion, nota, mensaje, imagenDataUrl) {
-    let texto = `Nombre: ${nombre}%0ADirección: ${direccion}%0ANota: ${nota}%0AMensaje: ${mensaje}`;
-    if (imagenDataUrl) {
-        texto += `%0AImagen adjunta (base64): ${imagenDataUrl}`;
-    }
-    const telefono = '1234567890'; // Reemplazar con el número de WhatsApp destino
-    const url = `https://wa.me/${telefono}?text=${texto}`;
-    window.open(url, '_blank');
-}
-
+// Manejo de navegación entre secciones
 const navLinks = document.querySelectorAll('nav ul li a');
 const secciones = document.querySelectorAll('section');
 
@@ -147,7 +21,122 @@ navLinks.forEach(link => {
     });
 });
 
-// Animación splash screen y transición al contenido principal
+// Productos de ejemplo
+const productos = [
+    { id: 1, nombre: 'Repuesto 1', precio: 100.00, imagen: 'https://via.placeholder.com/300x200?text=Repuesto+1' },
+    { id: 2, nombre: 'Repuesto 2', precio: 150.00, imagen: 'https://via.placeholder.com/300x200?text=Repuesto+2' },
+    { id: 3, nombre: 'Repuesto 3', precio: 200.00, imagen: 'https://via.placeholder.com/300x200?text=Repuesto+3' }
+];
+
+// Carrito de compras
+let carrito = [];
+
+// Agregar producto al carrito
+function agregarAlCarrito(id) {
+    const producto = productos.find(p => p.id === id);
+    if (!producto) return;
+
+    const itemCarrito = carrito.find(item => item.id === id);
+    if (itemCarrito) {
+        itemCarrito.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+    actualizarCarrito();
+}
+
+// Eliminar producto del carrito
+function eliminarDelCarrito(id) {
+    carrito = carrito.filter(item => item.id !== id);
+    actualizarCarrito();
+}
+
+// Vaciar carrito
+function vaciarCarrito() {
+    carrito = [];
+    actualizarCarrito();
+}
+
+// Actualizar visualización del carrito
+function actualizarCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalCarrito = document.getElementById('total-carrito');
+
+    if (carrito.length === 0) {
+        listaCarrito.innerHTML = '<p>Tu carrito está vacío.</p>';
+        totalCarrito.textContent = '';
+        return;
+    }
+
+    listaCarrito.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item-carrito');
+        itemDiv.innerHTML = `
+            <p>${item.nombre} - $${item.precio.toFixed(2)} x ${item.cantidad}</p>
+            <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
+        `;
+        listaCarrito.appendChild(itemDiv);
+        total += item.precio * item.cantidad;
+    });
+
+    totalCarrito.textContent = `Total: $${total.toFixed(2)}`;
+
+    // Añadir eventos a botones eliminar
+    const botonesEliminar = document.querySelectorAll('.btn-eliminar');
+    botonesEliminar.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.getAttribute('data-id'));
+            eliminarDelCarrito(id);
+        });
+    });
+}
+
+// Eventos para botones "Agregar al carrito"
+const botonesAgregar = document.querySelectorAll('.btn-agregar');
+botonesAgregar.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const id = parseInt(btn.getAttribute('data-id'));
+        agregarAlCarrito(id);
+    });
+});
+
+// Evento para vaciar carrito
+const btnVaciar = document.getElementById('btn-vaciar-carrito');
+btnVaciar.addEventListener('click', () => {
+    vaciarCarrito();
+});
+
+// Manejo del formulario de contacto (envío a WhatsApp)
+const form = document.getElementById('form-contacto');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const nombre = form.nombre.value.trim();
+    const direccion = form.direccion ? form.direccion.value.trim() : '';
+    const nota = form.nota ? form.nota.value.trim() : '';
+    const mensaje = form.mensaje.value.trim();
+
+    let texto = `Nombre: ${nombre}%0ADirección: ${direccion}%0ANota: ${nota}%0AMensaje: ${mensaje}`;
+
+    if (carrito.length > 0) {
+        texto += '%0A%0AProductos en el carrito:%0A';
+        carrito.forEach(item => {
+            texto += `- ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}%0A`;
+        });
+        const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+        texto += `%0ATotal: $${total.toFixed(2)}`;
+    }
+
+    const telefono = '32891585'; // Número de WhatsApp destino
+    const url = `https://wa.me/${telefono}?text=${texto}`;
+    window.open(url, '_blank');
+});
+
+// Splash screen
 const splashScreen = document.getElementById('splash-screen');
 const mainContent = document.getElementById('main-content');
 
@@ -157,6 +146,6 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             splashScreen.style.display = 'none';
             mainContent.style.display = 'block';
-        }, 1000); // Tiempo para que termine la transición de opacidad
-    }, 2500); // Duración total de la animación del logo
+        }, 1000);
+    }, 2500);
 });

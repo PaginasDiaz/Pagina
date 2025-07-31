@@ -4,14 +4,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap');
 
 :root {
-  --color-background: #f5f7fa;
-  --color-primary: #1a73e8;
-  --color-secondary: #ff6f61;
-  --color-accent: #fbbc04;
-  --color-text-primary: #202124;
-  --color-text-secondary: #5f6368;
+  --color-background: #1e1e1e;
+  --color-primary: #569cd6;
+  --color-secondary: #d7ba7d;
+  --color-accent: #c586c0;
+  --color-text-primary: #d4d4d4;
+  --color-text-secondary: #808080;
   --color-white: #ffffff;
-  --color-shadow: rgba(26, 115, 232, 0.2);
+  --color-shadow: rgba(86, 156, 214, 0.4);
 }
 
 * {
@@ -260,4 +260,126 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Estilos para catálogo de productos */
+.catalogo-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.producto {
+  background-color: var(--color-white);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(26, 115, 232, 0.15);
+  padding: 15px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.producto:hover {
+  box-shadow: 0 12px 30px rgba(255, 111, 97, 0.4);
+}
+
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.producto h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.producto .precio {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 15px;
+}
+
+.producto .btn-agregar {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
+}
+
+.producto .btn-agregar:hover {
+  background-color: var(--color-accent);
+  box-shadow: 0 8px 25px rgba(255, 187, 4, 0.7);
+}
+
+/* Estilos para carrito de compras */
+#lista-carrito {
+  background-color: var(--color-white);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(26, 115, 232, 0.1);
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+  min-height: 150px;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.item-carrito button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-secondary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.item-carrito button:hover {
+  color: var(--color-accent);
+}
+
+#total-carrito {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-align: right;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+}
+
+#btn-vaciar-carrito {
+  display: block;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
+  margin: 0 auto 40px auto;
+}
+
+#btn-vaciar-carrito:hover {
+  background-color: var(--color-accent);
+  box-shadow: 0 8px 25px rgba(255, 187, 4, 0.7);
 }
