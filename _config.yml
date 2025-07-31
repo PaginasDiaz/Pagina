@@ -1,0 +1,3 @@
+# Configuración para evitar que Jekyll procese archivos SCSS y solo sirva archivos estáticos
+exclude:
+  - assets/css/style.scss
