@@ -216,8 +216,9 @@ form button:hover {
 #logo {
   font-size: 5rem;
   color: var(--color-secundario);
-  animation: logoAnim 2s ease forwards;
-  animation-fill-mode: forwards;
+  /* Se elimina la animación del logo */
+  animation: none;
+  animation-fill-mode: none;
 }
 
 @keyframes logoAnim {
